@@ -68,10 +68,14 @@ export default class ConcatTextPlugin {
 			? this.options.files
 			: path.join(compiler.context, this.options.files);
 
-		this.options.target = path.relative(
-			compiler.options.output.path,
-			path.resolve(this.options.outputPath, this.options.name)
-		);
+		const filename = path.basename(compiler.options.output.filename, path.extname(compiler.options.output.filename));
+
+		const outputPath = this.options.outputPath || compiler.options.output.path;
+		const name = this.options.name || filename + path.extname(this.options.globPath);
+
+		this.options.target = path.isAbsolute(outputPath)
+			? path.relative(compiler.options.output.path, path.join(outputPath, name))
+			: path.join(outputPath, name);
 
 		compiler.hooks.emit.tapPromise(PLUGIN_NAME, this.emitText.bind(this));
 	}

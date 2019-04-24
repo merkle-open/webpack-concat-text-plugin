@@ -1,4 +1,4 @@
 module.exports = {
-	name: "default-output-path.txt",
+	name: undefined,
 	files: `${__dirname}/*.txt`
 };

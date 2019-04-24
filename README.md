@@ -4,8 +4,6 @@ The **ConcatTextPlugin** extracts and concatenates text files from a specified *
 
 ## Usage
 
-You'll need to specify three options in order to use the plugin.
-
 ```js
 new ConcatTextPlugin({
     files: "res/**/*.properties",
@@ -14,7 +12,7 @@ new ConcatTextPlugin({
 })
 ```
 
-The above configuration will look for `.properties` files under the `res/` folder (relative to the Webpack config file location) and concatenate them into a single file named `values.properties` under the `cache/` directory (also relative to the Webpack config file).
+The above configuration will look for `.properties` files under the `res/` folder (relative to the Webpack config file location) and concatenate them into a single file named `values.properties` under the `cache/` directory, which is **relative to the Webpack output path**.
 
 ### Options
 
@@ -22,13 +20,29 @@ The above configuration will look for `.properties` files under the `res/` folde
 
 The *glob* string to get the list of files that should be concatenated.
 
-#### `name` (string)
+#### `name` (string, default: same as *Webpack `output.filename`*)
 
-The name of the output file.
+The name of the output file. If it is not specified, the `output.filename` and the `files` glob string will be used as name. If the glob string doesn't have an extension, the name won't have on either:
 
-#### `outputPath` (string)
+```js
+module.exports = {
+    output: {
+        path: "dist/",
+        filename: "app.js"
+    },
+    plugins: [
+        new ConcatTextPlugin({
+            files: "res/**/*",
+        })
+    ]
+}
+```
 
-The output path relative to the `webpack.config.js` location.
+The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`.
+
+#### `outputPath` (string, default: same as *Webpack `output.path`*)
+
+The output path relative to the Webpack output path. You might also set it to an **absolute path**.
 
 ## Tests
 

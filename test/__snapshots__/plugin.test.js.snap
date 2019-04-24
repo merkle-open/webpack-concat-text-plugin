@@ -1,6 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ConcatTextPlugin default-name: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-name: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/default-name/default-name.txt"`;
+
+exports[`ConcatTextPlugin default-name: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin default-name: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-name-no-glob-ext: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-name-no-glob-ext: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/default-name-no-glob-ext/default-name-no-glob-ext"`;
+
+exports[`ConcatTextPlugin default-name-no-glob-ext: source 1`] = `
+"module.exports = {
+	name: undefined,
+	files: \`\${__dirname}/*\`
+};
+
+TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin default-name-no-glob-ext: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-output-path: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-output-path: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/default-output-path/dist/multiple.txt"`;
+
+exports[`ConcatTextPlugin default-output-path: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin default-output-path: warnings 1`] = `Array []`;
+
 exports[`ConcatTextPlugin empty: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin empty: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/empty/empty.properties"`;
 
 exports[`ConcatTextPlugin empty: source 1`] = `
 "
@@ -10,6 +56,8 @@ exports[`ConcatTextPlugin empty: source 1`] = `
 exports[`ConcatTextPlugin empty: warnings 1`] = `Array []`;
 
 exports[`ConcatTextPlugin multiple-files: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-files: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/multiple-files/default-output-path.txt"`;
 
 exports[`ConcatTextPlugin multiple-files: source 1`] = `
 "TestProperty.Value=Hello World
@@ -25,6 +73,8 @@ exports[`ConcatTextPlugin multiple-files: warnings 1`] = `Array []`;
 
 exports[`ConcatTextPlugin nested-files: errors 1`] = `Array []`;
 
+exports[`ConcatTextPlugin nested-files: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/nested-files/nested.txt"`;
+
 exports[`ConcatTextPlugin nested-files: source 1`] = `
 "TestProperty.Value=Hello World
 
@@ -39,9 +89,37 @@ exports[`ConcatTextPlugin nested-files: warnings 1`] = `Array []`;
 
 exports[`ConcatTextPlugin no-trailing-line-end: errors 1`] = `Array []`;
 
+exports[`ConcatTextPlugin no-trailing-line-end: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/no-trailing-line-end/no-trailing-line-end.properties"`;
+
 exports[`ConcatTextPlugin no-trailing-line-end: source 1`] = `
 "TestProperty.Value=Hello World
 TestProperty2.Value=Hallo Welt"
 `;
 
 exports[`ConcatTextPlugin no-trailing-line-end: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin relative-files-path: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin relative-files-path: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/relative-files-path/relative-files-path.txt"`;
+
+exports[`ConcatTextPlugin relative-files-path: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin relative-files-path: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin relative-output-path: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin relative-output-path: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/relative-output-path/dist/res/multiple.txt"`;
+
+exports[`ConcatTextPlugin relative-output-path: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin relative-output-path: warnings 1`] = `Array []`;

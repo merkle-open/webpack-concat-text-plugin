@@ -4,7 +4,7 @@ import path from "path";
 jest.unmock("concat");
 jest.unmock("glob");
 
-/* eslint-disable */
+/* eslint-disable import/imports-first */
 import { compile, createCompiler, cleanErrorStack } from "./utils";
 import ConcatTextPlugin, { PLUGIN_NAME } from "../src/index";
 /* eslint-enable */
@@ -15,19 +15,17 @@ describe(PLUGIN_NAME, () => {
 	cases.forEach((testCase) => {
 		it(testCase, (done) => {
 
-			const testDirectory = path.join("test", "cases", testCase);
-			const outputPath = path.join("test", "__output__", testCase);
+			const configFile = path.resolve("test", "cases", testCase, "config.js");
+			const outputPath = path.resolve("test", "__output__", testCase);
 			const filename = `${testCase}.js`;
-			const configFile = path.resolve(path.join(testDirectory, "config.js"));
 
 			const defaultConfig = {
 				name: testCase,
 				outputPath
 			};
 
-			// eslint-disable-next-line global-require
 			const caseConfig = (fs.existsSync(configFile))
-				? require(configFile)
+				? require(configFile) // eslint-disable-line global-require
 				: {};
 
 			const pluginConfig = Object.assign({}, defaultConfig, caseConfig);
@@ -53,7 +51,7 @@ describe(PLUGIN_NAME, () => {
 				files.forEach((asset) => {
 					if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, asset.name)) {
 						expect(stats.compilation.assets[asset.name].emitted).toBeTruthy();
-						expect(stats.compilation.assets[asset.name].existsAt).toEqual(path.resolve(outputPath, pluginConfig.name));
+						expect(stats.compilation.assets[asset.name].existsAt).toMatchSnapshot("path");
 						expect(stats.compilation.assets[asset.name].source()).toMatchSnapshot("source");
 					}
 				});
