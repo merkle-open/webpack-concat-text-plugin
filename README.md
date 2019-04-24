@@ -22,7 +22,7 @@ The *glob* string to get the list of files that should be concatenated.
 
 #### `name` (string, default: same as *Webpack `output.filename`*)
 
-The name of the output file. If it is not specified, the `output.filename` and the `files` glob string will be used as name. If the glob string doesn't have an extension, the name won't have on either:
+The name of the output file. If it is not specified, the `output.filename` and the `files` glob string file extension will be used as name. If the glob string doesn't have an extension, the name won't have one either:
 
 ```js
 module.exports = {
@@ -42,7 +42,7 @@ The example above will generate a concatenated file `dist/app` (without a file e
 
 #### `outputPath` (string, default: same as *Webpack `output.path`*)
 
-The output path relative to the Webpack output path. You might also set it to an **absolute path**.
+Specify where the concatenated file should be placed, relative to the Webpack output path. You might also set it to an **absolute path**.
 
 ## Tests
 
