@@ -1,0 +1,2 @@
+TestProperty3.One.Value=Hallo Welt
+TestProperty3.Two.Value=Foo

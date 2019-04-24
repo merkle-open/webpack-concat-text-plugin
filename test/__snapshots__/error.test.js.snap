@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConcatTextPlugin throws error when failing to concat files 1`] = `"Error: Concat Error"`;
+
+exports[`ConcatTextPlugin throws error when failing to glob files 1`] = `"Error: Glob Error"`;

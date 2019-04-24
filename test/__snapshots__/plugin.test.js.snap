@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConcatTextPlugin empty: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin empty: source 1`] = `
+"
+"
+`;
+
+exports[`ConcatTextPlugin empty: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-files: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-files: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+
+TestProperty3.One.Value=Hallo Welt
+TestProperty3.Two.Value=Foo
+"
+`;
+
+exports[`ConcatTextPlugin multiple-files: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin nested-files: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin nested-files: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty3.One.Value=Hallo Welt
+TestProperty3.Two.Value=Foo
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin nested-files: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin no-trailing-line-end: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin no-trailing-line-end: source 1`] = `
+"TestProperty.Value=Hello World
+TestProperty2.Value=Hallo Welt"
+`;
+
+exports[`ConcatTextPlugin no-trailing-line-end: warnings 1`] = `Array []`;
