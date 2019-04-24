@@ -46,7 +46,7 @@ export default class ConcatTextPlugin {
 	async emitText(compilation) {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const files = await this._globTextFiles(this.options.globPath);
+				const files = await this._globTextFiles(this.options.files);
 				const result = await concat(files);
 
 				compilation.assets[this.options.target] = new RawSource(result);
@@ -64,18 +64,24 @@ export default class ConcatTextPlugin {
 	 * @returns {void}
 	 */
 	apply(compiler) {
-		this.options.globPath = path.isAbsolute(this.options.files)
-			? this.options.files
-			: path.join(compiler.context, this.options.files);
-
 		const filename = path.basename(compiler.options.output.filename, path.extname(compiler.options.output.filename));
 
-		const outputPath = this.options.outputPath || compiler.options.output.path;
-		const name = this.options.name || filename + path.extname(this.options.globPath);
+		this.options = Object.assign(
+			{},
+			{
+				outputPath: compiler.options.output.path,
+				name: filename + path.extname(this.options.files)
+			},
+			this.options
+		);
 
-		this.options.target = path.isAbsolute(outputPath)
-			? path.relative(compiler.options.output.path, path.join(outputPath, name))
-			: path.join(outputPath, name);
+		this.options.target = path.isAbsolute(this.options.outputPath)
+			? path.relative(compiler.options.output.path, path.join(this.options.outputPath, this.options.name))
+			: path.join(this.options.outputPath, this.options.name);
+
+		this.options.files = path.isAbsolute(this.options.files)
+			? this.options.files
+			: path.join(compiler.context, this.options.files);
 
 		compiler.hooks.emit.tapPromise(PLUGIN_NAME, this.emitText.bind(this));
 	}
