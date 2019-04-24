@@ -38,7 +38,21 @@ module.exports = {
 }
 ```
 
-The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`.
+The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`. The output file won't have a file extension either if the `files` glob string matches multiple file types:
+
+```js
+module.exports = {
+    output: {
+        path: "dist/",
+        filename: "app.js"
+    },
+    plugins: [
+        new ConcatTextPlugin({
+            files: "res/**/*.{txt,properties}",
+        })
+    ]
+}
+```
 
 #### `outputPath` (string, default: same as *Webpack `output.path`*)
 

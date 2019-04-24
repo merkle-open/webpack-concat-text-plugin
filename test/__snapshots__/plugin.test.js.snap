@@ -55,6 +55,36 @@ exports[`ConcatTextPlugin empty: source 1`] = `
 
 exports[`ConcatTextPlugin empty: warnings 1`] = `Array []`;
 
+exports[`ConcatTextPlugin multiple-file-types: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-file-types: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/multiple-file-types/multiple-file-types"`;
+
+exports[`ConcatTextPlugin multiple-file-types: source 1`] = `
+"TestProperty.Value=Hello World
+
+Hallo Welt
+
+# Hello World
+"
+`;
+
+exports[`ConcatTextPlugin multiple-file-types: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-file-types-with-name: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin multiple-file-types-with-name: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/multiple-file-types-with-name/values.data"`;
+
+exports[`ConcatTextPlugin multiple-file-types-with-name: source 1`] = `
+"TestProperty.Value=Hello World
+
+Hallo Welt
+
+# Hello World
+"
+`;
+
+exports[`ConcatTextPlugin multiple-file-types-with-name: warnings 1`] = `Array []`;
+
 exports[`ConcatTextPlugin multiple-files: errors 1`] = `Array []`;
 
 exports[`ConcatTextPlugin multiple-files: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/multiple-files/default-output-path.txt"`;

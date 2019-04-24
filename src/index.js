@@ -66,11 +66,14 @@ export default class ConcatTextPlugin {
 	apply(compiler) {
 		const filename = path.basename(compiler.options.output.filename, path.extname(compiler.options.output.filename));
 
+		let extname = path.extname(this.options.files);
+		extname = (/\{.*\}+/g).test(extname) ? "" : extname;
+
 		this.options = Object.assign(
 			{},
 			{
 				outputPath: compiler.options.output.path,
-				name: filename + path.extname(this.options.files)
+				name: filename + extname
 			},
 			this.options
 		);
