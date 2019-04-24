@@ -16,7 +16,7 @@ describe(PLUGIN_NAME, () => {
 		it(testCase, (done) => {
 
 			const testDirectory = path.join("test", "cases", testCase);
-			const outputPath = path.resolve("test", "__output__", testCase);
+			const outputPath = path.join("test", "__output__", testCase);
 			const filename = `${testCase}.js`;
 			const configFile = path.resolve(path.join(testDirectory, "config.js"));
 
