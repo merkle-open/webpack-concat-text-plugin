@@ -16,19 +16,13 @@ describe(PLUGIN_NAME, () => {
 		it(testCase, (done) => {
 
 			const configFile = path.resolve("test", "cases", testCase, "config.js");
-			const outputPath = path.resolve("test", "__output__", testCase);
 			const filename = `${testCase}.js`;
-
-			const defaultConfig = {
-				name: testCase,
-				outputPath
-			};
 
 			const caseConfig = (fs.existsSync(configFile))
 				? require(configFile) // eslint-disable-line global-require
 				: {};
 
-			const pluginConfig = Object.assign({}, defaultConfig, caseConfig);
+			const pluginConfig = Object.assign({}, caseConfig);
 			const webpackConfig = {
 				output: {
 					filename,

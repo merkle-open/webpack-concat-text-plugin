@@ -19,8 +19,8 @@ exports[`ConcatTextPlugin default-name-no-glob-ext: path 1`] = `"/Users/plam/Wor
 
 exports[`ConcatTextPlugin default-name-no-glob-ext: source 1`] = `
 "module.exports = {
-	name: undefined,
-	files: \`\${__dirname}/*\`
+	files: \`\${__dirname}/*\`,
+	outputPath: __dirname.replace(\\"cases\\", \\"__output__\\")
 };
 
 TestProperty.Value=Hello World
