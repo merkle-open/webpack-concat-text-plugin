@@ -1,6 +1,6 @@
 # Concat Text Webpack Plugin
 
-The **ConcatTextPlugin** extracts and concatenates text files from a specified glob into a single, large file.
+The **ConcatTextPlugin** extracts and concatenates text files from a specified *glob* path into a single file.
 
 ## Tests
 

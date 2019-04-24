@@ -68,7 +68,10 @@ export default class ConcatTextPlugin {
 			? this.options.files
 			: path.join(compiler.context, this.options.files);
 
-		this.options.target = path.relative(compiler.outputPath, path.resolve(this.options.outputPath, this.options.name));
+		this.options.target = path.relative(
+			compiler.options.output.path,
+			path.resolve(this.options.outputPath, this.options.name)
+		);
 
 		compiler.hooks.emit.tapPromise(PLUGIN_NAME, this.emitText.bind(this));
 	}

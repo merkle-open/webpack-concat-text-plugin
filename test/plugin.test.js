@@ -6,7 +6,7 @@ jest.unmock("glob");
 
 /* eslint-disable */
 import { compile, createCompiler, cleanErrorStack } from "./utils";
-import ConcatTextPlugin, { PLUGIN_NAME } from "../index";
+import ConcatTextPlugin, { PLUGIN_NAME } from "../src/index";
 /* eslint-enable */
 
 const cases = process.env.CASES ? process.env.CASES.split(",") : fs.readdirSync(path.join(__dirname, "cases"));
@@ -34,7 +34,7 @@ describe(PLUGIN_NAME, () => {
 			const webpackConfig = {
 				output: {
 					filename,
-					path: path.join(__dirname, "__output__")
+					path: path.join(__dirname, "__output__", testCase, "dist")
 				}
 			};
 

@@ -2,13 +2,17 @@
   "name": "concat-text-webpack-plugin",
   "version": "1.0.0",
   "description": "Concatenate and extract text files.",
-  "main": "dist/index.js",
+  "main": "dist/cjs.js",
   "scripts": {
-    "build": "babel index.js -d dist",
+    "prebuild": "npm run clean",
+    "build": "babel src -d dist",
     "prepublish": "npm run build",
+    "clean": "rimraf dist",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/index.js test"
   },
   "author": "Patrick Lam <patrick.lam@namics.com>",
   "license": "MIT",
@@ -36,6 +40,7 @@
     "eslint-plugin-import": "2.17.2",
     "jest": "24.7.1",
     "memory-fs": "0.4.1",
+    "rimraf": "2.6.3",
     "webpack": "4.30.0"
   },
   "jest": {
@@ -48,7 +53,7 @@
     ],
     "coverageDirectory": "test/coverage",
     "collectCoverageFrom": [
-      "*.js",
+      "src/index.js",
       "!**/node_modules/**",
       "!**/test/**"
     ]

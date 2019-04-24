@@ -47,7 +47,6 @@ export function createCompiler(options = {}) {
 				mode: "production",
 				bail: true,
 				cache: false,
-				entry: "./index.js",
 				optimization: {
 					minimize: false
 				},

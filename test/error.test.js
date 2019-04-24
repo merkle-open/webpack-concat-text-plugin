@@ -7,7 +7,7 @@ jest.mock("glob");
 
 /* eslint-disable import/imports-first */
 import { compile, createCompiler, cleanErrorStack } from "./utils";
-import ConcatTextPlugin, { PLUGIN_NAME } from "../index";
+import ConcatTextPlugin, { PLUGIN_NAME } from "../src/index";
 /* eslint-enable */
 
 describe(PLUGIN_NAME, () => {
