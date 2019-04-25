@@ -11,5 +11,5 @@
 			}
 		]
 	],
-	"plugins": ["transform-flow-strip-types", "es6-promise"]
+	"plugins": ["es6-promise"]
 }
