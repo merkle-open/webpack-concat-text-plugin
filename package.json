@@ -6,6 +6,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=8 <11"
+  },
   "scripts": {
     "prebuild": "npm run clean",
     "build": "babel src -d dist",
