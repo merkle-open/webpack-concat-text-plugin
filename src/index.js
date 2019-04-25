@@ -54,6 +54,26 @@ export function getRelativeTargetPath(startingPath, outputPath) {
 }
 
 /**
+ * Merges the passed plugin options with defaults based on the
+ * Webpack compiler's `output` options, like `output.filename` and `output.path`.
+ *
+ * @param {{ filename: string, path: string }} outputOptions The webpack compiler instance.
+ * @param {{ files: string, outputPath: string, name: string }} options The options object.
+ * @returns {{ files: string, outputPath: string, name: string }} options The merged options object.
+ */
+export function mergeWithOutputOptions({ filename, path: outputPath }, options) {
+	const basename = path.basename(filename, path.extname(filename));
+	const extname = getExtFromGlobPath(options.files);
+
+	const defaultOptions = {
+		outputPath,
+		name: basename + extname
+	};
+
+	return Object.assign({}, defaultOptions, options);
+}
+
+/**
  * The `ConcatTextPlugin` for Webpack to concatenate
  * text files into a single one.
  */
@@ -72,15 +92,16 @@ export default class ConcatTextPlugin {
 	 * single file located at `this.options.target`.
 	 *
 	 * @param {webpack.Compilation} compilation The Webpack compilation object.
+	 * @param {string} target The target path (including filename) of the concatenated asset.
 	 * @returns {Promise} Rejected Error.
 	 */
-	emitText(compilation) {
+	emitText(compilation, target) {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const files = await globTextFiles(this.options.files);
 				const result = await concat(files);
 
-				compilation.assets[this.options.target] = new RawSource(result);
+				compilation.assets[target] = new RawSource(result);
 
 				resolve();
 			} catch (e) {
@@ -95,24 +116,16 @@ export default class ConcatTextPlugin {
 	 * @returns {void}
 	 */
 	apply(compiler) {
-		const filename = path.basename(compiler.options.output.filename, path.extname(compiler.options.output.filename));
-		const extname = getExtFromGlobPath(this.options.files);
+		this.options = mergeWithOutputOptions(compiler.options.output, this.options);
 
-		this.options = Object.assign(
-			{},
-			{
-				outputPath: compiler.options.output.path,
-				name: filename + extname
-			},
-			this.options
-		);
+		compiler.hooks.emit.tapPromise(PLUGIN_NAME, (compilation) => {
+			const target = path.join(
+				getRelativeTargetPath(compiler.options.output.path, this.options.outputPath),
+				this.options.name
+			);
 
-		this.options.target = path.join(
-			getRelativeTargetPath(compiler.options.output.path, this.options.outputPath),
-			this.options.name
-		);
-
-		compiler.hooks.emit.tapPromise(PLUGIN_NAME, this.emitText.bind(this));
+			return this.emitText(compilation, target);
+		});
 	}
 
 }

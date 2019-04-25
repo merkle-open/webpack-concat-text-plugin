@@ -6,7 +6,12 @@ jest.unmock("glob");
 
 /* eslint-disable import/imports-first */
 import { compile, createCompiler, cleanErrorStack } from "./utils";
-import ConcatTextPlugin, { getExtFromGlobPath, getRelativeTargetPath, globTextFiles, PLUGIN_NAME } from "../src/index";
+import ConcatTextPlugin, {
+	getExtFromGlobPath,
+	getRelativeTargetPath,
+	globTextFiles,
+	mergeWithOutputOptions,
+	PLUGIN_NAME } from "../src/index";
 /* eslint-enable */
 
 const cases = process.env.CASES ? process.env.CASES.split(",") : fs.readdirSync(path.join(__dirname, "cases"));
@@ -97,6 +102,32 @@ describe(PLUGIN_NAME, () => {
 			].forEach(({ outputPath, expected }) => {
 				const actual = getRelativeTargetPath(startingPath, outputPath);
 				expect(actual).toBe(expected);
+			});
+		});
+
+		it("can merge plugin options with compiler output options", () => {
+			const outputOptions = { filename: "main.js", path: path.join(__dirname, "dist") };
+
+			[ // Test Cases
+				{
+					pluginOptions: { files: "src/**/*.properties", name: "values.properties" },
+					expected: { name: "values.properties", outputPath: path.join(__dirname, "dist") }
+				},
+				{
+					pluginOptions: { files: "src/**/*.properties", outputPath: "../" },
+					expected: { name: "main.properties", outputPath: "../" }
+				},
+				{
+					pluginOptions: { files: "src/**/*.properties", name: "res.props", outputPath: "res" },
+					expected: { name: "res.props", outputPath: "res" }
+				},
+				{
+					pluginOptions: { files: "src/**/*.properties" },
+					expected: { name: "main.properties", outputPath: path.join(__dirname, "dist") }
+				}
+			].forEach(({ pluginOptions, expected }) => {
+				const actual = mergeWithOutputOptions(outputOptions, pluginOptions);
+				expect(actual).toEqual(Object.assign({}, expected, { files: pluginOptions.files }));
 			});
 		});
 
