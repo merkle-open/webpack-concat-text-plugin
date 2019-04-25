@@ -1,3 +1,4 @@
 test/__output__
 test/coverage
 dist/
+node_modules/
