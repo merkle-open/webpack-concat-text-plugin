@@ -38,7 +38,7 @@ module.exports = {
 }
 ```
 
-The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`. The output file won't have a file extension either if the `files` glob string matches multiple file types:
+The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`. The output file won't have a file extension as well if the `files` glob string matches multiple file types:
 
 ```js
 module.exports = {
@@ -53,6 +53,8 @@ module.exports = {
     ]
 }
 ```
+
+Some other examples would be `*.js?(x)` or `*.+(md|markdown)`. Basically, if the file extension is not exact, the output file won't have one.
 
 #### `outputPath` (string, default: same as *Webpack `output.path`*)
 

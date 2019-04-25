@@ -13,6 +13,19 @@ TestProperty2.Value=Hallo Welt
 
 exports[`ConcatTextPlugin default-name: warnings 1`] = `Array []`;
 
+exports[`ConcatTextPlugin default-name-magic-glob-ext: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin default-name-magic-glob-ext: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/default-name-magic-glob-ext/default-name-magic-glob-ext"`;
+
+exports[`ConcatTextPlugin default-name-magic-glob-ext: source 1`] = `
+"<h1>Hello World</h1>
+
+<h2>Hello World</h2>
+"
+`;
+
+exports[`ConcatTextPlugin default-name-magic-glob-ext: warnings 1`] = `Array []`;
+
 exports[`ConcatTextPlugin default-name-no-glob-ext: errors 1`] = `Array []`;
 
 exports[`ConcatTextPlugin default-name-no-glob-ext: path 1`] = `"/Users/plam/Workspace/namics/webpack-concat-text-plugin/test/__output__/default-name-no-glob-ext/default-name-no-glob-ext"`;
