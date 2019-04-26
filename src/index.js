@@ -9,7 +9,7 @@ export const PLUGIN_NAME = "ConcatTextPlugin";
 /**
  * Extract a file extension from a glob path.
  * If multiple file types are being matched by the glob (e.g. `*.{txt,properties}`
- * or `*.tsx?`), an empty string will be returned.
+ * or `*.ts?(x)`), an empty string will be returned.
  *
  * @param {string} globPath The glob path from which to extract a file type extension.
  * @returns {string} The extracted extension. Can be an empty string.
@@ -39,7 +39,7 @@ export async function globTextFiles(globPath) {
 /**
  * Gets the concatenation target location as a relative path based on the
  * `startingPath` (Webpacks `output.path`) and the configured `outputPath`.
- * If the `outputPath` is already a relative path,  we'll just return it.
+ * If the `outputPath` is already a relative path, we'll just return it.
  * Otherwise, if it is an absolute path, we determine its location as a
  * path relative to the `startingPath`.
  *

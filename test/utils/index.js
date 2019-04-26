@@ -1,5 +1,3 @@
-import path from "path";
-
 import MemoryFileSystem from "memory-fs"; // eslint-disable-line
 import webpack from "webpack";
 
@@ -76,21 +74,20 @@ export function countPlugins({ hooks }) {
 	}, {});
 }
 
+/**
+ *
+ * @param {string} str The absolute path.
+ * @returns {string} The path without the current working directory.
+ */
 export function removeCWD(str) {
 	return str.split(`${process.cwd()}/`).join("");
 }
 
-export function normalizeSourceMap(source) {
-	if (source.map && source.map.sources) {
-		// eslint-disable-next-line no-param-reassign
-		source.map.sources = source.map.sources.map((sourceFromMap) =>
-			path.relative(process.cwd(), sourceFromMap).replace(/\\/g, "/")
-		);
-	}
-
-	return source;
-}
-
+/**
+ *
+ * @param {Error} error The Error object.
+ * @returns {string} The cleaned Error message and stack trace.
+ */
 export function cleanErrorStack(error) {
 	return removeCWD(error.toString())
 		.split("\n")
