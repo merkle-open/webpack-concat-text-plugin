@@ -49,9 +49,13 @@ describe(PLUGIN_NAME, () => {
 
 				files.forEach((asset) => {
 					if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, asset.name)) {
-						expect(stats.compilation.assets[asset.name].emitted).toBeTruthy();
-						expect(stats.compilation.assets[asset.name].existsAt).toMatchSnapshot("path");
-						expect(stats.compilation.assets[asset.name].source()).toMatchSnapshot("source");
+						const { emitted, existsAt } = stats.compilation.assets[asset.name];
+						const source = stats.compilation.assets[asset.name].source();
+						const targetPath = path.posix.relative(__dirname, existsAt);
+
+						expect(emitted).toBeTruthy();
+						expect(targetPath).toMatchSnapshot("path");
+						expect(source).toMatchSnapshot("source");
 					}
 				});
 
@@ -88,17 +92,17 @@ describe(PLUGIN_NAME, () => {
 		});
 
 		it("can get relative target path", () => {
-			const startingPath = path.join(__dirname, "test/");
+			const startingPath = path.join(__dirname, "test");
 
 			[ // Test Cases
 				{ outputPath: "cases", expected: "cases" },
 				{ outputPath: "../test", expected: "../test" },
 				{ outputPath: "..", expected: ".." },
 				{ outputPath: __dirname, expected: ".." },
-				{ outputPath: path.join(__dirname, "/test/coverage"), expected: "coverage" },
-				{ outputPath: path.join(__dirname, "/test/cases/foo"), expected: "cases/foo" },
-				{ outputPath: path.join(__dirname, "/test"), expected: "" },
-				{ outputPath: path.join(__dirname, "/dist/test"), expected: "../dist/test" }
+				{ outputPath: path.join(__dirname, "test", "coverage"), expected: "coverage" },
+				{ outputPath: path.join(__dirname, "test", "cases", "foo"), expected: path.join("cases", "foo") },
+				{ outputPath: path.join(__dirname, "test"), expected: "" },
+				{ outputPath: path.join(__dirname, "dist", "test"), expected: path.join("..", "dist", "test") }
 			].forEach(({ outputPath, expected }) => {
 				const actual = getRelativeTargetPath(startingPath, outputPath);
 				expect(actual).toBe(expected);
