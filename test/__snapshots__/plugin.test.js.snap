@@ -241,3 +241,23 @@ TestProperty2.Value=Hallo Welt
 `;
 
 exports[`ConcatTextPlugin relative-output-path: warnings 1`] = `Array []`;
+
+exports[`ConcatTextPlugin webpack-entry-name: errors 1`] = `Array []`;
+
+exports[`ConcatTextPlugin webpack-entry-name: path 1`] = `
+Array [
+  "__output__",
+  "webpack-entry-name",
+  "dist",
+  "webpack-entry-name.properties",
+]
+`;
+
+exports[`ConcatTextPlugin webpack-entry-name: source 1`] = `
+"TestProperty.Value=Hello World
+
+TestProperty2.Value=Hallo Welt
+"
+`;
+
+exports[`ConcatTextPlugin webpack-entry-name: warnings 1`] = `Array []`;

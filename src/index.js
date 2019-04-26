@@ -6,10 +6,12 @@ import { RawSource } from "webpack-sources";
 
 export const PLUGIN_NAME = "ConcatTextPlugin";
 
+const REGEXP_PLACEHOLDERS = /\[(name)\]/g;
+
 /**
  * Extract a file extension from a glob path.
- * If multiple file types are being matched by the glob (e.g. `*.{txt,properties}`
- * or `*.ts?(x)`), an empty string will be returned.
+ * If multiple file types are being matched by the glob
+ * (e.g. `*.{txt,properties}` or `*.ts?(x)`), an string will be returned.
  *
  * @param {string} globPath The glob path from which to extract a file type extension.
  * @returns {string} The extracted extension. Can be an empty string.
@@ -69,6 +71,10 @@ export function mergeWithOutputOptions({ filename, path: outputPath }, options) 
 		outputPath,
 		name: basename + extname
 	};
+
+	if (options.name && REGEXP_PLACEHOLDERS.test(options.name)) {
+		options.name = options.name.replace(REGEXP_PLACEHOLDERS, basename);
+	}
 
 	return Object.assign({}, defaultOptions, options);
 }

@@ -62,6 +62,24 @@ module.exports = {
 
 Some other examples would be `*.js?(x)` or `*.+(md|markdown)`. Basically, if the file extension is not exact, the output file won't have one.
 
+So, if you want to explicitly set the file extension for the concatenated file while still matching multiple types, the `name` options needs to be set. However, in case you don't want to set a static file name and instead prefer to just use the `output.filename` option of your Webpack config, the **[name]** placeholder can be of help:
+
+```js
+module.exports = {
+    output: {
+        path: "dist/",
+        filename: "app.js"
+    },
+    plugins: [
+        new ConcatTextPlugin({
+            files: "res/**/*.{md,markdown}",
+            outputPath: "docs",
+            name: "[name].md"
+        })
+    ]
+}
+```
+
 #### `outputPath` (string, default: same as *Webpack `output.path`*)
 
 Specify where the concatenated file should be placed, relative to the Webpack output path. You might also set it to an **absolute path**. Omitting this option will place the concatenated file at your Webpack output path.
