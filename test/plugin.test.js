@@ -51,10 +51,10 @@ describe(PLUGIN_NAME, () => {
 					if (Object.prototype.hasOwnProperty.call(stats.compilation.assets, asset.name)) {
 						const { emitted, existsAt } = stats.compilation.assets[asset.name];
 						const source = stats.compilation.assets[asset.name].source();
-						const targetPath = path.posix.relative(__dirname, existsAt);
+						const targetPath = path.relative(__dirname, existsAt);
 
 						expect(emitted).toBeTruthy();
-						expect(targetPath).toMatchSnapshot("path");
+						expect(targetPath.split(path.sep)).toMatchSnapshot("path");
 						expect(source).toMatchSnapshot("source");
 					}
 				});
