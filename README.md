@@ -1,6 +1,10 @@
-# Concat Text Webpack Plugin
+[![NPM version][npm-badge]][npm-url]
+[![License][license-badge]][license-url]
+[![dependencies Status][deps-badge]][deps-url]
 
-The **ConcatTextPlugin** extracts and concatenates text files from a specified *glob* path into a single file.
+# concat-text-webpack-plugin
+
+The `ConcatTextPlugin` extracts and concatenates text files from a specified *glob* path into a single file. This is **not intended** to be used to extract frontend asset files, like stylesheets (use the [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) for this). Instead, this plugin is helpful when dealing with raw text assets that have been split into multiple files for code modularisation purposes, but need to be consolidated for consumption by e.g. the project's backend system.
 
 ## Usage
 
@@ -33,12 +37,13 @@ module.exports = {
     plugins: [
         new ConcatTextPlugin({
             files: "res/**/*",
+            outputPath: "static"
         })
     ]
 }
 ```
 
-The example above will generate a concatenated file `dist/app` (without a file extension) containing everything under `res/`. The output file won't have a file extension as well if the `files` glob string matches multiple file types:
+The example above will generate a concatenated file `dist/static/app` (without a file extension) containing everything under `res/`. The output file won't have a file extension as well if the glob string matches multiple file types:
 
 ```js
 module.exports = {
@@ -49,6 +54,7 @@ module.exports = {
     plugins: [
         new ConcatTextPlugin({
             files: "res/**/*.{txt,properties}",
+            outputPath: "static"
         })
     ]
 }
@@ -58,7 +64,24 @@ Some other examples would be `*.js?(x)` or `*.+(md|markdown)`. Basically, if the
 
 #### `outputPath` (string, default: same as *Webpack `output.path`*)
 
-Specify where the concatenated file should be placed, relative to the Webpack output path. You might also set it to an **absolute path**.
+Specify where the concatenated file should be placed, relative to the Webpack output path. You might also set it to an **absolute path**. Omitting this option will place the concatenated file at your Webpack output path.
+
+```js
+module.exports = {
+    output: {
+        path: "dist/",
+        filename: "app.js"
+    },
+    plugins: [
+        new ConcatTextPlugin({
+            files: "res/**/*.md",
+            name: "docs.md"
+        })
+    ]
+}
+```
+
+The configuration seen above will write a markdown file `dist/docs.md` containing every markdown file it could find under the `res/` directory.
 
 ## Tests
 
@@ -67,3 +90,14 @@ There are some basic snapshot tests to assert the output of the loader.
 ```
 npm test
 ```
+
+## License
+
+[MIT](./LICENSE)
+
+[npm-badge]: https://img.shields.io/npm/v/concat-text-webpack-plugin.svg
+[npm-url]: https://npmjs.org/package/concat-text-webpack-plugin
+[license-badge]: https://img.shields.io/badge/license-MIT-green.svg
+[license-url]: http://opensource.org/licenses/MIT
+[deps-badge]: https://david-dm.org/namics/webpack-concat-text-plugin/status.svg
+[deps-url]: https://david-dm.org/namics/webpack-concat-text-plugin
