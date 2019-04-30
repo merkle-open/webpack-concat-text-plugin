@@ -11,7 +11,8 @@ const REGEXP_PLACEHOLDERS = /\[(name)\]/g;
 /**
  * Extract a file extension from a glob path.
  * If multiple file types are being matched by the glob
- * (e.g. `*.{txt,properties}` or `*.ts?(x)`), an string will be returned.
+ * (e.g. `*.{txt,properties}` or `*.ts?(x)`), an empty
+ * string will be returned.
  *
  * @param {string} globPath The glob path from which to extract a file type extension.
  * @returns {string} The extracted extension. Can be an empty string.
