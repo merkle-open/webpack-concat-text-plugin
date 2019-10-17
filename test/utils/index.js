@@ -2,7 +2,6 @@ import MemoryFileSystem from "memory-fs"; // eslint-disable-line
 import webpack from "webpack";
 
 /* eslint-disable require-jsdoc */
-
 export class PluginEnvironment {
 	constructor() {
 		this.events = [];
