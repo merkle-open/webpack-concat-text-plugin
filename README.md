@@ -1,6 +1,7 @@
+[![CI Status][ci-badge]][ci-url]
 [![NPM version][npm-badge]][npm-url]
 [![License][license-badge]][license-url]
-[![dependencies Status][deps-badge]][deps-url]
+[![Dependencies Status][deps-badge]][deps-url]
 
 # concat-text-webpack-plugin
 
@@ -119,3 +120,5 @@ npm test
 [license-url]: http://opensource.org/licenses/MIT
 [deps-badge]: https://david-dm.org/namics/webpack-concat-text-plugin/status.svg
 [deps-url]: https://david-dm.org/namics/webpack-concat-text-plugin
+[ci-badge]: https://github.com/namics/webpack-concat-text-plugin/workflows/Build%20&%20Test/badge.svg
+[ci-url]: https://github.com/namics/webpack-concat-text-plugin/actions?query=workflow%3A%22Build+%26+Test%22
