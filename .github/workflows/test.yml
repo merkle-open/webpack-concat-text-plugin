@@ -11,7 +11,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: npm-${{ hashFiles('**/yarn.lock') }}
+        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
       with:
@@ -31,7 +31,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: npm-${{ hashFiles('**/yarn.lock') }}
+        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Use Node.js 10.x
       uses: actions/setup-node@v1
       with:
