@@ -1,0 +1,43 @@
+name: Build & Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache Nodejs modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: npm-${{ hashFiles('**/yarn.lock') }}
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: Install and build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI: true
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache Nodejs modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: npm-${{ hashFiles('**/yarn.lock') }}
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: Testing
+      run: |
+        npm run test:coverage
+      env:
+        CI: true
