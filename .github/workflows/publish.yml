@@ -12,13 +12,9 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: Cache Nodejs modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Testing
       run: |
+        npm ci
         npm run test:coverage
       env:
         CI: true
@@ -30,11 +26,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: Cache Nodejs modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: npm-${{ hashFiles('**/package-lock.json') }}
     - name: Publish
       run: |
         npm ci
