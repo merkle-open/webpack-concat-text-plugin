@@ -13,6 +13,7 @@
     "prebuild": "npm run clean",
     "build": "babel src -d dist",
     "prepublishOnly": "npm run build && pkg-ok",
+    "release": "npm version -m \"chore(release): :package: new version for webpack-concat-text-plugin\"",
     "clean": "rimraf dist",
     "pretest": "npm run lint",
     "test": "jest",
