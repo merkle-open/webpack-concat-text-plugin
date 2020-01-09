@@ -37,4 +37,6 @@ jobs:
         ref: master
     - name: Merge develop into master
       run: |
-        git merge develop
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+        git merge --ff --no-edit develop
+        git push origin master
