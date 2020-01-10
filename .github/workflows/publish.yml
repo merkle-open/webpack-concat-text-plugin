@@ -29,14 +29,6 @@ jobs:
     - name: Publish
       run: |
         npm ci
-        echo "dry-run npm publish"
+        npm publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-    - uses: actions/checkout@v2
-      with:
-        ref: master
-    - name: Merge develop into master
-      run: |
-        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-        git merge --ff --no-edit develop
-        git push origin master
+        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
