@@ -1,4 +1,5 @@
 [![CI Status][ci-badge]][ci-url]
+[![Publish Status][publish-badge]][publish-url]
 [![NPM version][npm-badge]][npm-url]
 [![License][license-badge]][license-url]
 [![Dependencies Status][deps-badge]][deps-url]
@@ -112,11 +113,16 @@ npm test
 
 ## Publishing
 
-To release a new version of this package, make sure to have the latest changes in your `develop` branch, or at the very least, the changes that should be in a release.
-- Run `npm run release -- <new-version>`. This will create a new release commit and git tag, as well as adjust the version in the `package.json` and `package-lock.json`.
-- Push to `develop` and create a new Pull Request from `develop` to `master`. Once the PR has been merged, the new version will be published to npm.
+To release a new version of this package, make sure to have the latest changes in the `master` branch, or at the very least, the changes that should be in a release.
+
+1. Run `npm run release -- <new-version>` in `master`. This will create a new release commit and git tag, as well as adjust the version in the `package.json` and `package-lock.json`.
 
 The underlying script uses `npm version` to edit the `package.json` files and to commit/tag the changes for the release with the specified version. Refer to the [npm documentation](https://docs.npmjs.com/cli/version) for more details.
+
+2. Push the commit and tag to `master`
+3. Create a new release on the GitHub [Releases Page](https://github.com/namics/webpack-concat-text-plugin/releases) and specify the existing tag
+
+A GitHub Action will now test and publish the new release.
 
 ## License
 
@@ -130,3 +136,5 @@ The underlying script uses `npm version` to edit the `package.json` files and to
 [deps-url]: https://david-dm.org/namics/webpack-concat-text-plugin
 [ci-badge]: https://github.com/namics/webpack-concat-text-plugin/workflows/Build%20&%20Test/badge.svg
 [ci-url]: https://github.com/namics/webpack-concat-text-plugin/actions?query=workflow%3A%22Build+%26+Test%22
+[publish-badge]: https://github.com/namics/webpack-concat-text-plugin/workflows/Publish/badge.svg
+[publish-url]: https://github.com/namics/webpack-concat-text-plugin/actions?query=workflow%3APublish
