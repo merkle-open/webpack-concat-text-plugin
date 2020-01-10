@@ -110,6 +110,14 @@ There are some basic snapshot tests to assert the output of the loader.
 npm test
 ```
 
+## Publishing
+
+To release a new version of this package, make sure to have the latest changes in your `develop` branch, or at the very least, the changes that should be in a release.
+- Run `npm run release -- <new-version>`. This will create a new release commit and git tag, as well as adjust the version in the `package.json` and `package-lock.json`.
+- Push to `develop` and create a new Pull Request from `develop` to `master`. Once the PR has been merged, the new version will be published to npm.
+
+The underlying script uses `npm version` to edit the `package.json` files and to commit/tag the changes for the release with the specified version. Refer to the [npm documentation](https://docs.npmjs.com/cli/version) for more details.
+
 ## License
 
 [MIT](./LICENSE)
