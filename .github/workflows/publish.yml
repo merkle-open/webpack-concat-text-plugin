@@ -15,7 +15,7 @@ jobs:
     - name: Testing
       run: |
         npm ci
-        npm run test:coverage
+        npm test -- --coverage
       env:
         CI: true
   publish:
