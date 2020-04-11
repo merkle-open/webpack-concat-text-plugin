@@ -7,7 +7,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=8 <12"
+    "node": ">=8 <13"
   },
   "scripts": {
     "prebuild": "npm run clean",
