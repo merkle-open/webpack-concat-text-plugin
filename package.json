@@ -33,19 +33,19 @@
     "webpack-sources": "1.4.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.7",
-    "@babel/preset-env": "7.8.7",
-    "@namics/eslint-config": "8.0.7",
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.10.5",
+    "@babel/preset-env": "7.10.4",
+    "@namics/eslint-config": "9.0.1",
     "babel-eslint": "10.1.0",
-    "babel-jest": "25.1.0",
-    "eslint": "6.8.0",
-    "eslint-plugin-import": "2.20.1",
-    "jest": "25.1.0",
+    "babel-jest": "26.1.0",
+    "eslint": "7.5.0",
+    "eslint-plugin-import": "2.22.0",
+    "jest": "26.1.0",
     "memory-fs": "0.5.0",
     "pkg-ok": "2.3.1",
     "rimraf": "3.0.2",
-    "webpack": "4.42.0"
+    "webpack": "4.43.0"
   },
   "jest": {
     "transform": {
