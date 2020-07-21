@@ -1,6 +1,6 @@
 {
   "name": "concat-text-webpack-plugin",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Concatenate and extract text files.",
   "main": "dist/cjs.js",
   "files": [
