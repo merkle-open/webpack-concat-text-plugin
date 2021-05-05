@@ -120,7 +120,7 @@ To release a new version of this package, make sure to have the latest changes i
 The underlying script uses `npm version` to edit the `package.json` files and to commit/tag the changes for the release with the specified version. Refer to the [npm documentation](https://docs.npmjs.com/cli/version) for more details.
 
 2. Push the commit and tag to `master`
-3. Create a new release on the GitHub [Releases Page](https://github.com/namics/webpack-concat-text-plugin/releases) and specify the existing tag
+3. Create a new release on the GitHub [Releases Page](https://github.com/merkle-open/webpack-concat-text-plugin/releases) and specify the existing tag
 
 A GitHub Action will now test and publish the new release.
 
@@ -132,9 +132,9 @@ A GitHub Action will now test and publish the new release.
 [npm-url]: https://npmjs.org/package/concat-text-webpack-plugin
 [license-badge]: https://img.shields.io/badge/license-MIT-green.svg
 [license-url]: http://opensource.org/licenses/MIT
-[deps-badge]: https://david-dm.org/namics/webpack-concat-text-plugin/status.svg
-[deps-url]: https://david-dm.org/namics/webpack-concat-text-plugin
-[ci-badge]: https://github.com/namics/webpack-concat-text-plugin/workflows/Build%20&%20Test/badge.svg
-[ci-url]: https://github.com/namics/webpack-concat-text-plugin/actions?query=workflow%3A%22Build+%26+Test%22
-[publish-badge]: https://github.com/namics/webpack-concat-text-plugin/workflows/Publish/badge.svg
-[publish-url]: https://github.com/namics/webpack-concat-text-plugin/actions?query=workflow%3APublish
+[deps-badge]: https://david-dm.org/merkle-open/webpack-concat-text-plugin/status.svg
+[deps-url]: https://david-dm.org/merkle-open/webpack-concat-text-plugin
+[ci-badge]: https://github.com/merkle-open/webpack-concat-text-plugin/workflows/Build%20&%20Test/badge.svg
+[ci-url]: https://github.com/merkle-open/webpack-concat-text-plugin/actions?query=workflow%3A%22Build+%26+Test%22
+[publish-badge]: https://github.com/merkle-open/webpack-concat-text-plugin/workflows/Publish/badge.svg
+[publish-url]: https://github.com/merkle-open/webpack-concat-text-plugin/actions?query=workflow%3APublish
