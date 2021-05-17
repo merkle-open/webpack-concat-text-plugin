@@ -21,11 +21,11 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src/index.js test"
   },
-  "author": "Patrick Lam <patrick.lam@namics.com>",
+  "author": "Patrick Lam <patrick.lam@emea.merkleinc.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/namics/webpack-concat-text-plugin.git"
+    "url": "git://github.com/merkle-open/webpack-concat-text-plugin.git"
   },
   "dependencies": {
     "concat": "1.0.3",
