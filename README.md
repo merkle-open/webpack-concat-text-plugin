@@ -103,6 +103,29 @@ module.exports = {
 
 The configuration seen above will write a markdown file `dist/docs.md` containing every markdown file it could find under the `res/` directory.
 
+#### `hookName` (string, default: `emit`*)
+
+Specify when the plugin should hook into the webpack compilation. This should be one of the hooks webpack
+provides in the [developer documentation](https://webpack.js.org/api/compiler-hooks/#hooks)
+
+```js
+module.exports = {
+    output: {
+        path: "dist/",
+        filename: "bundle.js"
+    },
+    plugins: [
+        new ConcatTextPlugin({
+            files: "dist/**/*.js*",
+            name: "bundle.js",
+            hookName: "afterEmit"
+        })
+    ]
+}
+```
+
+The configuration seen above will write a js file `dist/bundle.js` containing every js file it could find under the `dist/` directory.
+
 ## Tests
 
 There are some basic snapshot tests to assert the output of the loader.
