@@ -9,6 +9,14 @@ export const PLUGIN_NAME = "ConcatTextPlugin";
 const REGEXP_PLACEHOLDERS = /\[(name)\]/g;
 
 /**
+ * @typedef {Object} Options - Options for the text file concatenation
+ * @property {string} files - The *glob* string to get the list of files that should be concatenated
+ * @property {string} name - The name of the output file
+ * @property {string} outputPath - Where the concatenated file should be placed, relative to the Webpack output path
+ * @property {string} hookName - Name of the webpack hook to use for compilation
+ */
+
+/**
  * Extract a file extension from a glob path.
  * If multiple file types are being matched by the glob
  * (e.g. `*.{txt,properties}` or `*.ts?(x)`), an empty
@@ -61,8 +69,8 @@ export function getRelativeTargetPath(startingPath, outputPath) {
  * Webpack compiler's `output` options, like `output.filename` and `output.path`.
  *
  * @param {{ filename: string, path: string }} outputOptions The webpack compiler instance.
- * @param {{ files: string, outputPath: string, name: string }} options The options object.
- * @returns {{ files: string, outputPath: string, name: string }} options The merged options object.
+ * @param {Options} options The options object.
+ * @returns {Options} options The merged options object.
  */
 export function mergeWithOutputOptions({ filename, path: outputPath }, options) {
 	const basename = path.basename(filename, path.extname(filename));
@@ -70,7 +78,8 @@ export function mergeWithOutputOptions({ filename, path: outputPath }, options) 
 
 	const defaultOptions = {
 		outputPath,
-		name: basename + extname
+		name: basename + extname,
+		hookName: "emit"
 	};
 
 	if (options.name && REGEXP_PLACEHOLDERS.test(options.name)) {
@@ -88,7 +97,7 @@ export default class ConcatTextPlugin {
 
 	/**
 	 *
-	 * @param {{ files: string, outputPath: string, name: string }} options The options object.
+	 * @param {Options} options The options object.
 	 */
 	constructor(options) {
 		this.options = options;
@@ -125,7 +134,7 @@ export default class ConcatTextPlugin {
 	apply(compiler) {
 		this.options = mergeWithOutputOptions(compiler.options.output, this.options);
 
-		compiler.hooks.emit.tapPromise(PLUGIN_NAME, (compilation) => {
+		compiler.hooks[this.options.hookName].tapPromise(PLUGIN_NAME, (compilation) => {
 			const target = path.join(
 				getRelativeTargetPath(compiler.options.output.path, this.options.outputPath),
 				this.options.name
